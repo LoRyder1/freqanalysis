@@ -18,6 +18,9 @@ gem 'rake'
 
 gem 'shotgun'
 
+# Use to interact with .docx files
+gem 'docx', '~> 0.2.07', :require => ["docx"]
+
 group :test do
   gem 'faker'
   gem 'rspec'
