@@ -1,10 +1,16 @@
 
 <div class="container">
 	<h2>Hello WOrld</h2>
+<hr>
+	<p><%= @first %></p>
+	
+
+	<p><%= @drama.inspect %></p>
+
+<hr>
 
 <p>
-	<% doc = Docx::Document.open('example.docx')  %>
-	<% doc.paragraphs.each do |p| %>
+	<% @doc.paragraphs.each do |p| %>
 	<ul>
 		<li><%= p.to_html %></li>
 	</ul>
