@@ -2,7 +2,9 @@ get '/' do
   # Look in app/views/index.erb
   # erb :index
 
-  @doc = Docx::Document.open('example.docx')
+  document = Document.find(filename: "example1.docx")
+
+  @doc = Docx::Document.open(document.filename)
 
   @paragraphs = []
   @doc.paragraphs.each do |p|
@@ -12,37 +14,44 @@ get '/' do
   @first = @paragraphs[8].text
   @test = @first.gsub(/[^a-z]/i, "")
 
-  # raise @test.inspect
-
   @yo = @first.downcase.split(" ")
 
   @drama = []
 
   @yo.each do |x|
-  	@drama << x.gsub(/[^a-z]/i, "")
+  	@drama << x.gsub(/[^a-z]|ed|ing/i, "")
   end
 
-  test1 = "talk, talks, talked, talking"
-
-  prc = test1.downcase.split(" ")
-  @yep =[]
-
-  prc.each do |x|
-  	@yep << x.gsub(/[^a-z]|ed|ing/i, "")
+  @drama2 = []
+  @drama.each do |x|
+    if x.chars.last == "s" && x != "is" && x != "was"
+      @drama2 << x.chomp("s")
+    else
+      @drama2 << x 
+    end
   end
 
-  @crazy = []
-  @yep.each do |x|
-  	if x.chars.last == "s"
-  		@crazy << x.chomp("s")
-  	else
-  		@crazy << x
-  	end
-  end
+  #######
 
-  raise @crazy.inspect
+  # test1 = "talk, talks, talked, talking"
 
-  raise @yep.inspect
+  # prc = test1.downcase.split(" ")
+  # @yep =[]
+
+  # prc.each do |x|
+  # 	@yep << x.gsub(/[^a-z]|ed|ing/i, "")
+  # end
+
+  # @crazy = []
+  # @yep.each do |x|
+  # 	if x.chars.last == "s"
+  # 		@crazy << x.chomp("s")
+  # 	else
+  # 		@crazy << x
+  # 	end
+  # end
+
+
 
   erb :analysis
 end
