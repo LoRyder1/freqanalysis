@@ -2,7 +2,7 @@ get '/' do
   # Look in app/views/index.erb
   # erb :index
 
-  document = Document.find(filename: "example1.docx")
+  document = Document.find_by(filename: "example1.docx")
 
   @doc = Docx::Document.open(document.filename)
 
@@ -11,25 +11,34 @@ get '/' do
   	@paragraphs << p
   end
 
-  @first = @paragraphs[8].text
-  @test = @first.gsub(/[^a-z]/i, "")
-
-  @yo = @first.downcase.split(" ")
-
-  @drama = []
-
-  @yo.each do |x|
-  	@drama << x.gsub(/[^a-z]|ed|ing/i, "")
+  full_text = []
+  @paragraphs.each do |x|
+    full_text << x.text
   end
 
-  @drama2 = []
-  @drama.each do |x|
-    if x.chars.last == "s" && x != "is" && x != "was"
-      @drama2 << x.chomp("s")
-    else
-      @drama2 << x 
-    end
+  @full_text_join = full_text.join(" ").downcase.split(" ")
+
+  # raise @full_text_join.inspect
+
+  # @first = @paragraphs[8].text
+
+  # @yo = @first.downcase.split(" ")
+
+
+  #getting rid of apostrophes and suffixes usign regex
+  @nosuffix = []
+  @full_text_join.each do |x|
+  	@nosuffix << x.gsub(/[^a-z]|ed|ing/i, "")
   end
+
+  # @drama2 = []
+  # @drama.each do |x|
+  #   if x.chars.last == "s" && x != "is" && x != "was"
+  #     @drama2 << x.chomp("s")
+  #   else
+  #     @drama2 << x 
+  #   end
+  # end
 
   #######
 
