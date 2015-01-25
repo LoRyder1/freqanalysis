@@ -25,6 +25,14 @@ gem 'docx', '~> 0.2.07', :require => ["docx"]
 gem 'carrierwave'
 
 group :test do
-  gem 'faker'
+  gem 'shoulda-matchers'
+  gem 'rack-test'
   gem 'rspec'
+  gem 'capybara'
+end
+
+group :test, :development do
+  gem 'factory_girl'
+  gem 'faker'
+  gem 'pry'
 end

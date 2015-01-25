@@ -21,7 +21,6 @@ post '/analyze' do
 
   @document_parsed = Document.downcase_split(full_text)
 
-
   # getting rid of apostrophes and suffixes using regex
   no_suffix = Word.delete_suffix(@document_parsed)
 

@@ -1,6 +1,6 @@
 
 # Document.create!(name: "example1.docx")
-Document.create!(name: "test.docx")
+Document.create!(name: "test.docx", file: "test.docx")
 Word.create!(document_id: 1, original_word: "talked" , stem: "talk")
 Word.create!(document_id: 1, original_word: "talks" , stem: "talk")
 Word.create!(document_id: 1, original_word: "talking" , stem: "talk")
