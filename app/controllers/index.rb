@@ -13,10 +13,14 @@ post '/analyze' do
 
   @doc = Docx::Document.open(file_location)
 
-  @paragraphs = []
-  @doc.paragraphs.each do |p|
-    @paragraphs << p
-  end
+  # @paragraphs = []
+  # @doc.paragraphs.each do |p|
+  #   @paragraphs << p
+  # end
+
+  @paragraphs = Document.paragraphs(@doc)
+
+  # raise @paragraphs.inspect
 
   full_text = []
   @paragraphs.each do |x|
