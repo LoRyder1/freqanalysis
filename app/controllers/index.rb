@@ -11,60 +11,26 @@ post '/analyze' do
   # Have to find the location from CarrierWave Object
   file_location = dc.file.file.file
 
-  @doc = Docx::Document.open(file_location)
+  doc = Docx::Document.open(file_location)
 
-  # @paragraphs = []
-  # @doc.paragraphs.each do |p|
-  #   @paragraphs << p
-  # end
+  passages = Document.paragraphs(doc)
 
-  @paragraphs = Document.paragraphs(@doc)
-
-  # raise @paragraphs.inspect
-
-  full_text = []
-  @paragraphs.each do |x|
-    full_text << x.text
-  end
+  full_text = Document.combine(passages)
 
   @full_text_read = full_text.join
 
-  @full_text_join = full_text.join(" ").downcase.split(" ")
-
-  #getting rid of apostrophes and suffixes using regex
-  @nosuffix = []
-  @full_text_join.each do |x|
-    @nosuffix << x.gsub(/\W|ed|ing/, "")
-  end
-
-  @no_s = []
-  @nosuffix.each do |x|
-    if x == "is" || x == "was" 
-      @no_s << x
-    elsif x.chars.last == "s" 
-      @no_s << x.chomp("s")
-    else
-      @no_s << x 
-    end
-  end
-
-  # @no_s.each do |stem|
-  #     Word.create!(document_id: document.id, stem: stem)
-  # end
-
-  #create a hash for word count
-  h = Hash.new(0)
-  @no_s.each do |v|
-    h.store(v, h[v]+1)
-  end
-
-  sorted_word_count =  h.sort_by {|key, value| value}
+  @document_parsed = Document.downcase_split(full_text)
 
 
-  @last_five = sorted_word_count.last(25).reverse
+  # getting rid of apostrophes and suffixes using regex
+  no_suffix = Word.delete_suffix(@document_parsed)
 
+  # deleting the s for appropriate words
+  no_s = Word.delete_s(no_suffix)
 
-  # @test = ["health", "healthing", "healthed", "healths", "crazy", "crazys", "crazyed", "drama", "dramed", "frame", "framed", "frameing"]
+  doc_word_count = Document.count_words(no_s)
+
+  @top_25_sorted_word_count = Document.sorted_word_count(doc_word_count)
 
   erb :analysis
 

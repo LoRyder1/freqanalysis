@@ -2,26 +2,22 @@
 <div class="container">
 	<h2>Hello WOrld</h2>
 <hr>
-	<p><%= @full_text_join.count %></p>
+	<p>Total Words: <%= @document_parsed.count %></p>
 
-	<p><%= @no_s.count %></p> 
-
-	<p><%= @last_five %></p> 
+<hr>
 
 	<table>
 		<tr>
 			<th>Word</th>
 			<th>Count</th>
 		</tr>
-	<% @last_five.each do |word, count| %>
-
+	<% @top_25_sorted_word_count.each do |word, count| %>
 		<tr>
 			<td><%= word %></td>
 			<td><%= count %></td>
 		</tr>
-		<% end %>
+	<% end %>
 	</table>
-
 
 <hr>
 
