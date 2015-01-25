@@ -1,14 +1,21 @@
 get '/' do
   # Look in app/views/index.erb
-  # erb :index
+  erb :index
+end
 
-  document = Document.find_by(filename: "example1.docx")
+post '/analyze' do 
 
-  @doc = Docx::Document.open(document.filename)
+  dc = Document.new(file: params[:file])
+  dc.save
+
+  # Have to find the location from CarrierWave Object
+  file_location = dc.file.file.file
+
+  @doc = Docx::Document.open(file_location)
 
   @paragraphs = []
   @doc.paragraphs.each do |p|
-  	@paragraphs << p
+    @paragraphs << p
   end
 
   full_text = []
@@ -16,12 +23,14 @@ get '/' do
     full_text << x.text
   end
 
+  # raise full_text.inspect
+
   @full_text_join = full_text.join(" ").downcase.split(" ")
 
   #getting rid of apostrophes and suffixes using regex
   @nosuffix = []
   @full_text_join.each do |x|
-  	@nosuffix << x.gsub(/\W|ed|ing/, "")
+    @nosuffix << x.gsub(/\W|ed|ing/, "")
   end
 
   @no_s = []
@@ -47,21 +56,15 @@ get '/' do
 
   sorted_word_count =  h.sort_by {|key, value| value}
 
-  # raise sorted_word_count.inspect
 
-  @last_five = sorted_word_count.last(5).reverse
+  @last_five = sorted_word_count.last(10).reverse
 
-  # raise last_five.inspect
-
-  # two.each do |x, y|
-  #   puts "#{x}: #{y}"
-  # end
 
   # @test = ["health", "healthing", "healthed", "healths", "crazy", "crazys", "crazyed", "drama", "dramed", "frame", "framed", "frameing"]
 
   erb :analysis
-end
 
+end
 
 
 

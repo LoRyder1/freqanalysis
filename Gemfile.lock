@@ -17,6 +17,11 @@ GEM
     arel (5.0.1.20140414130214)
     backports (3.6.0)
     builder (3.2.2)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     daemons (1.1.9)
     diff-lcs (1.2.5)
     docx (0.2.07)
@@ -27,6 +32,7 @@ GEM
       i18n (~> 0.5)
     i18n (0.6.9)
     json (1.8.1)
+    mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.3.4)
     multi_json (1.10.1)
@@ -76,6 +82,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord (~> 4.1)
   activesupport (~> 4.1)
+  carrierwave
   docx (~> 0.2.07)
   faker
   pg

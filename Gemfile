@@ -21,6 +21,9 @@ gem 'shotgun'
 # Use to interact with .docx files
 gem 'docx', '~> 0.2.07', :require => ["docx"]
 
+# Needed for file uploading
+gem 'carrierwave'
+
 group :test do
   gem 'faker'
   gem 'rspec'
