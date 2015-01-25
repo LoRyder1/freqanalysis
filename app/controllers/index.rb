@@ -18,49 +18,52 @@ get '/' do
 
   @full_text_join = full_text.join(" ").downcase.split(" ")
 
-  # raise @full_text_join.inspect
-
-  # @first = @paragraphs[8].text
-
-  # @yo = @first.downcase.split(" ")
-
-
-  #getting rid of apostrophes and suffixes usign regex
+  #getting rid of apostrophes and suffixes using regex
   @nosuffix = []
   @full_text_join.each do |x|
-  	@nosuffix << x.gsub(/[^a-z]|ed|ing/i, "")
+  	@nosuffix << x.gsub(/\W|ed|ing/, "")
   end
 
-  # @drama2 = []
-  # @drama.each do |x|
-  #   if x.chars.last == "s" && x != "is" && x != "was"
-  #     @drama2 << x.chomp("s")
-  #   else
-  #     @drama2 << x 
-  #   end
+  @no_s = []
+  @nosuffix.each do |x|
+    if x == "is" || x == "was" 
+      @no_s << x
+    elsif x.chars.last == "s" 
+      @no_s << x.chomp("s")
+    else
+      @no_s << x 
+    end
+  end
+
+  # @no_s.each do |stem|
+  #     Word.create!(document_id: document.id, stem: stem)
   # end
 
-  #######
+  #create a hash for word count
+  h = Hash.new(0)
+  @no_s.each do |v|
+    h.store(v, h[v]+1)
+  end
 
-  # test1 = "talk, talks, talked, talking"
+  sorted_word_count =  h.sort_by {|key, value| value}
 
-  # prc = test1.downcase.split(" ")
-  # @yep =[]
+  # raise sorted_word_count.inspect
 
-  # prc.each do |x|
-  # 	@yep << x.gsub(/[^a-z]|ed|ing/i, "")
+  @last_five = sorted_word_count.last(5).reverse
+
+  # raise last_five.inspect
+
+  # two.each do |x, y|
+  #   puts "#{x}: #{y}"
   # end
 
-  # @crazy = []
-  # @yep.each do |x|
-  # 	if x.chars.last == "s"
-  # 		@crazy << x.chomp("s")
-  # 	else
-  # 		@crazy << x
-  # 	end
-  # end
-
-
+  # @test = ["health", "healthing", "healthed", "healths", "crazy", "crazys", "crazyed", "drama", "dramed", "frame", "framed", "frameing"]
 
   erb :analysis
 end
+
+
+
+
+
+

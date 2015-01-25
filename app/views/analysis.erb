@@ -2,10 +2,29 @@
 <div class="container">
 	<h2>Hello WOrld</h2>
 <hr>
-	<p><%= @full_text_join %></p>
-	<p><%= @no_suffix %></p>
+	<p><%= @full_text_join.count %></p>
+	<!-- <p><%= @no_suffix %></p> -->
 
-	<p><%= @drama2.inspect %></p>
+	<!-- <p><%= @no_s %></p> -->
+	<p><%= @no_s.count %></p> 
+
+	<p><%= @last_five %></p> 
+
+
+	<table>
+		<tr>
+			<th>Word</th>
+			<th>Count</th>
+		</tr>
+	<% @last_five.each do |word, count| %>
+
+		<tr>
+			<td><%= word %></td>
+			<td><%= count %></td>
+		</tr>
+		<% end %>
+	</table>
+
 
 <hr>
 
@@ -17,7 +36,5 @@
 	<% end %>
 </p>
 	
-
-
 
 </div>
