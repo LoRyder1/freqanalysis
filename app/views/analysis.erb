@@ -10,7 +10,6 @@
 
 	<p><%= @last_five %></p> 
 
-
 	<table>
 		<tr>
 			<th>Word</th>
@@ -28,13 +27,7 @@
 
 <hr>
 
-<p>
-	<% @doc.paragraphs.each do |p| %>
-	<ul>
-		<li><%= p.to_html %></li>
-	</ul>
-	<% end %>
-</p>
+<p><%= @full_text_read %></p>
 	
 
 </div>

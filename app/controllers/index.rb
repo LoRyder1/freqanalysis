@@ -23,7 +23,7 @@ post '/analyze' do
     full_text << x.text
   end
 
-  # raise full_text.inspect
+  @full_text_read = full_text.join
 
   @full_text_join = full_text.join(" ").downcase.split(" ")
 
@@ -57,7 +57,7 @@ post '/analyze' do
   sorted_word_count =  h.sort_by {|key, value| value}
 
 
-  @last_five = sorted_word_count.last(10).reverse
+  @last_five = sorted_word_count.last(25).reverse
 
 
   # @test = ["health", "healthing", "healthed", "healths", "crazy", "crazys", "crazyed", "drama", "dramed", "frame", "framed", "frameing"]

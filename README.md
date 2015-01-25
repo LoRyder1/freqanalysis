@@ -18,7 +18,6 @@ Use whatever language and framework(s) you find familiar and appropriate to the 
 The code
 A README that gives an overview of your solution and libraries/frameworks you used
 
-
 1. accept text document from user
 2. count how often each word is used in it
 3. report top 25 most
