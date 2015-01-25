@@ -23,5 +23,4 @@ class Word < ActiveRecord::Base
     no_s
   end
 
-  
 end

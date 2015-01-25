@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'docx'
 
-describe "Document" do 
+describe "Document Parsing" do 
 
 	before(:each) do
     @doc = Docx::Document.open("test.docx")

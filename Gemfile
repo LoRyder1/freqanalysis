@@ -24,6 +24,9 @@ gem 'docx', '~> 0.2.07', :require => ["docx"]
 # Needed for file uploading
 gem 'carrierwave'
 
+# Code Coverage analysis tool
+gem 'simplecov', :require => false, :group => :test
+
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
