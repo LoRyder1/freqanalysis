@@ -27,8 +27,6 @@ post '/analyze' do
   @full_text_read = full_text.join
 
   @document_parsed = Document.downcase_split(full_text)
-
-  # raise @document_parsed.inspect
   
   no_punc = Word.delete_punctuation(@document_parsed)
 
