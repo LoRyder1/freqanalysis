@@ -31,6 +31,9 @@ post '/analyze' do
 
   @top_25_sorted_word_count = Document.sorted_word_count(doc_word_count)
 
+  @top15 = @top_25_sorted_word_count[0..14] 
+  @top16to25 = @top_25_sorted_word_count[15..25]
+
   erb :analysis
 
 end

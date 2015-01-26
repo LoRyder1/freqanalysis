@@ -2,28 +2,48 @@
 <div class="container">
 	<h2>Document Analysis</h2>
 <hr>
-	<p>Total Words: <%= @document_parsed.count %></p>
+	<p>Total Words: <b><%= @document_parsed.count %></b></p>
 
 <hr>
 
+<div id="left">
 	<table>
 		<tr>
-			<th>Number</th>
 			<th>Word</th>
 			<th>Count</th>
 		</tr>
-	<% @top_25_sorted_word_count.each do |word, count| %>
+
+	<% @top15.each do |word, count| %>
 		<tr>
-			<td><%= word %></td>
 			<td><%= word %></td>
 			<td><%= count %></td>
 		</tr>
 	<% end %>
 	</table>
+</div>
 
-<hr>
+<div id="right">
+<br>
+<br>
+<br>
+	<table>
+	<% @top16to25.each do |word, count| %>
+		<tr>
+			<td><%= word %></td>
+			<td><%= count %></td>
+		</tr>
+	<% end %>
+	</table>
+</div>
 
-<p><%= @full_text_read %></p>
-	
+<br>
+<br><br><br>
+
+	<h2>Full Text</h2>
+<div id="full_text">
+	<p><i><%= @full_text_read %></i></p>
+</div>
 
 </div>
+
+

@@ -12,7 +12,7 @@ class Word < ActiveRecord::Base
   def self.delete_s(no_suffix)
   	no_s = []
   	no_suffix.each do |x|
-    	if x == "is" || x == "was" 
+    	if x == "is" || x == "was" || x == "as" || x == "this"
     	  no_s << x
     	elsif x.chars.last == "s" 
     	  no_s << x.chomp("s")

@@ -1,9 +1,84 @@
 .container {
-  margin: 20px auto;
-  width: 600px;
+  margin: 40px auto;
+  /*margin: 0 auto;*/
+  /*width: 600px;*/
+  width: 720px;
   padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+  border: 1px solid black;
+  background-color: white;
 }
-th {
+
+table, th, td {
+  border: 1px solid #bbb;
+}
+
+table th {
+  color: #333;
+  padding: 5px;
   text-align: left;
 }
+
+table td {
+  padding: 5px;
+}
+
+nav {
+  z-index: 1;
+  background-color: #152737;
+  width: 20%;
+  position: fixed;
+  max-width: 250px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  line-height: 2em;
+  padding: 15px;
+}
+
+nav li{
+	color: white;
+  text-decoration: none;
+}
+
+#sidebar_title{
+	font-size: 2em;
+	color: white;
+}
+
+h9 {
+	color: white;
+  text-decoration: none;	
+}
+
+#left {
+  float:left;
+  width:250px;
+  padding: 20px;
+}
+
+#right {
+  float:right;
+  /*width:340px;*/
+  width:400px;
+  height:473px;
+
+}
+
+body {
+    background-color: #FFFFF7;
+}
+
+
+h1 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+h2 {
+	/*font-family: 'Fontdiner Swanky', cursive;*/
+	font-size: 3em;
+	text-align: center;
+	font-family: 'Euphoria Script', cursive;
+}
+
+
