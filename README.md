@@ -5,9 +5,10 @@ Coding Exercise
 
 Goal: Build a webapp that performs simple frequency analysis on a user-supplied text document.
 
-Languages: *Ruby*
-Framework: *Sinatra*
-Database: *Postgres*
+| Language   | Framework     | Database   |
+| ---------- |:-------------:| ----------:|
+| *Ruby*     | *Sinatra*     | *Postgres* |
+
 
 Special Gems Used: *docx*, *carrierwave*, and *simplecov*
 
