@@ -22,12 +22,5 @@ Extracting the stems involved first deleting the suffixes that were common and t
 
 The framework for behavior driven development of the application is RSpec. There are 12 examples/tests, 0 failures. 
 
-
-
-
-
-
-
-
-
-
+alternate link:
+[Frequency Analysis](https://evening-plateau-2886.herokuapp.com/)
