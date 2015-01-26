@@ -27,15 +27,15 @@ gem 'carrierwave'
 # Code Coverage analysis tool
 gem 'simplecov', :require => false, :group => :test
 
-# group :test do
-#   gem 'shoulda-matchers'
-#   gem 'rack-test'
-#   gem 'rspec'
-#   gem 'capybara'
-# end
+group :test do
+  gem 'shoulda-matchers'
+  gem 'rack-test'
+  gem 'rspec'
+  gem 'capybara'
+end
 
-# group :test, :development do
-#   gem 'factory_girl'
-#   gem 'faker'
-#   gem 'pry'
-# end
+group :test, :development do
+  gem 'factory_girl'
+  gem 'faker'
+  gem 'pry'
+end
