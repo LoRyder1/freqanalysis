@@ -28,13 +28,17 @@ post '/analyze' do
 
   @document_parsed = Document.downcase_split(full_text)
 
-  # getting rid of apostrophes and suffixes using regex
-  no_suffix = Word.delete_suffix(@document_parsed)
+  # raise @document_parsed.inspect
+  
+  no_punc = Word.delete_punctuation(@document_parsed)
 
   # deleting the s for appropriate words
-  no_s = Word.delete_s(no_suffix)
+  no_s = Word.delete_s(no_punc)
 
-  doc_word_count = Document.count_words(no_s)
+  # getting rid of apostrophes and suffixes using regex
+  no_suffix = Word.delete_suffix(no_s)
+
+  doc_word_count = Document.count_words(no_suffix)
 
   @top_25_sorted_word_count = Document.sorted_word_count(doc_word_count)
 

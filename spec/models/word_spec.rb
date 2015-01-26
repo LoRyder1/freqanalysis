@@ -4,7 +4,7 @@ require 'docx'
 describe "Word Parsing" do 
 
 	before(:each) do
-	  @doc_parsed = ["talk", "talked", "talks,", "talking", "cat.", "cat's"]
+	  @doc_parsed = ["talk", "talked", "talks,", "talking", "cat.", "cat's", "fact"]
 	  @no_suffix = ["talk", "talk", "talks", "talk", "cat", "cats", "is", "was"]
   end
 
@@ -18,19 +18,24 @@ describe "Word Parsing" do
 		expect(Word.delete_suffix(@doc_parsed)).not_to include("talking")
 	end
 
+	it "does not delete suffix for word 'fact'" do 
+		expect(@doc_parsed).to include("fact")
+		expect(Word.delete_suffix(@doc_parsed)).to include("fact")
+	end
+
 	it "deletes the commas from words" do 
 		expect(@doc_parsed).to include("talks,")
-		expect(Word.delete_suffix(@doc_parsed)).not_to include("talks,")
+		expect(Word.delete_punctuation(@doc_parsed)).not_to include("talks,")
 	end
 
 	it "deletes the periods from words" do 
 		expect(@doc_parsed).to include("cat.")
-		expect(Word.delete_suffix(@doc_parsed)).not_to include("cat.")
+		expect(Word.delete_punctuation(@doc_parsed)).not_to include("cat.")
 	end
 
 	it "deletes the apostrophes from words" do 
 		expect(@doc_parsed).to include("cat's")
-		expect(Word.delete_suffix(@doc_parsed)).not_to include("cat's")
+		expect(Word.delete_punctuation(@doc_parsed)).not_to include("cat's")
 	end
 
 	it "delete extra s from pluralized nouns and verbs" do 

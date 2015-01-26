@@ -5,12 +5,10 @@ Coding Exercise
 
 Goal: Build a webapp that performs simple frequency analysis on a user-supplied text document.
 
-| Language   | Framework     | Database   |
-| ---------- |:-------------:| ----------:|
-| *Ruby*     | *Sinatra*     | *Postgres* |
+| Language   | Framework     | Database   |   Special Gems                         |
+|:----------:|:-------------:|:----------:|:--------------------------------------:|
+| *Ruby*     | *Sinatra*     | *Postgres* | *docx*, *carrierwave*, and *simplecov* |
 
-
-Special Gems Used: *docx*, *carrierwave*, and *simplecov*
 
 The docx gem is used to make it simpler to interact with docx files while the carrierwave gem allows for uploading of files; in this case it would be documents. The simplecov gem is a testing coverage tool to see how much code the tests cover. 
 
