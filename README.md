@@ -1,28 +1,34 @@
-# freqanalysis
+
+# Frequency Analysis
 
 Coding Exercise
 
 Goal: Build a webapp that performs simple frequency analysis on a user-supplied text document.
 
-The application should accept a text document from the user, count how often each word is used in it, and report the top 25 most frequently used.
+Languages: *Ruby*
+Framework: *Sinatra*
+Database: *Postgres*
 
-In order to make the results more useful, the analysis should extract the stems of the words so that different inflections of the same word are all counted in the same bucket. Use the following categories when stemming:
+Special Gems Used: *docx*, *carrierwave*, and *simplecov*
 
-Regularly conjugated english verbs. For example, consider "talk", "talks", "talking", and "talked" to all be forms of "talk".
-Regularly pluralized english nouns. For example, consider "cat" and "cats" to be forms of "cat".
+The docx gem is used to make it simpler to interact with docx files while the carrierwave gem allows for uploading of files; in this case it would be documents. The simplecov gem is a testing coverage tool to see how much code the tests cover. 
 
-Please write the stemming algorithm yourself, instead of using an existing code library. The results should be supplied to the user in a friendly and attractive web page.
+The first page allows for the uploading of the docx file. The next page actually shows the analysis. The first thing you see is a table with the top 25 words in the document along with the occurences of the word in the document. Below the table you will see the full text of the document. 
 
-Use whatever language and framework(s) you find familiar and appropriate to the task. When you're satisfied with your solution, submit:
+The software architectural pattern used for the user interface was the traditional model-view-controller. The model is where the behavior of the application is written. The logic, rules, and management of data is done here. The view is where the output for th application is generated. The templating system used was embedded Ruby - ruby embedded into a html document. The controller accepts input and converts it to commands for the model or view. 
 
-The code
-A README that gives an overview of your solution and libraries/frameworks you used
+The Document parsing is done in the Document model via the methods controlled by the controller index file. The word parsing and hence the algorithms to extract the stems from the words is done in the Word model methods. 
 
-1. accept text document from user
-2. count how often each word is used in it
-3. report top 25 most
+Extracting the stems involved first deleting the suffixes that were common and then deleting the s for pluralized words. The stemming algorithm could potentially be much more complex and grab more possibilities. 
 
-4. analysis should extract the stem of the words 
-5. design results page
+The framework for behavior driven development of the application is RSpec. There are 12 examples/tests, 0 failures. 
 
-6. write testing of algorithm
+
+
+
+
+
+
+
+
+
