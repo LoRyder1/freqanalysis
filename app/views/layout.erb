@@ -27,6 +27,10 @@
       </div>
         <h9>Document History</h9>
 
+      <% @lasttendoc.each do |document| %>
+          <li><%= document.file.to_s.slice(9, 20) %></li>
+      <% end %>
+
       <br>
       <a href="/">Go Back to Upload Document</a>
     </nav>    

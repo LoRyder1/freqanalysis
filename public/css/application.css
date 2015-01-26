@@ -24,7 +24,7 @@ table td {
 
 nav {
   z-index: 1;
-  background-color: #152737;
+  background-color: #1A661A;
   width: 20%;
   position: fixed;
   max-width: 250px;
@@ -70,13 +70,16 @@ body {
 
 
 h1 {
-  font-family: "Times New Roman", Times, serif;
+  /*font-family: "Times New Roman", Times, serif;*/
+  font-size: 4em;
+	text-align: center;
+	font-family: 'Euphoria Script', cursive;
 }
 
 
 h2 {
 	/*font-family: 'Fontdiner Swanky', cursive;*/
-	font-size: 3em;
+	font-size: 2em;
 	text-align: center;
 	font-family: 'Euphoria Script', cursive;
 }

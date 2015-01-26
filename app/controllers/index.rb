@@ -1,5 +1,8 @@
 get '/' do
-  # Look in app/views/index.erb
+
+  # get last ten documents uploaded and saved to database for history sidebar
+  @lasttendoc = Document.all.order(:created_at).reverse_order.limit(10)
+  
   erb :index
 end
 
@@ -8,11 +11,15 @@ post '/analyze' do
   dc = Document.new(file: params[:file])
   dc.save
 
+  # get last ten documents uploaded and saved to database for history sidebar
+  @lasttendoc = Document.all.order(:created_at).reverse_order.limit(10)
+
   # Have to find the location from CarrierWave Object
   file_location = dc.file.file.file
 
   doc = Docx::Document.open(file_location)
 
+  # many of these methods are in the model
   passages = Document.paragraphs(doc)
 
   full_text = Document.combine(passages)
