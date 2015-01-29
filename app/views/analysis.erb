@@ -2,7 +2,7 @@
 <div class="container">
 	<h2>Document Analysis</h2>
 <hr>
-	<p>Total Words in Document: <b><%= @document_parsed.count %></b></p>
+	<p>Total Words in Document: <b><%= @doc_parsed.count %></b></p>
 
 <hr>
 <p>Below you will find a table with the top 25 words in the document along with the number of occurences.</p>
@@ -42,7 +42,7 @@
 
 	<h2>Full Text</h2>
 <div id="full_text">
-	<p><i><%= @full_text_read %></i></p>
+	<p><i><%= @text[0] %></i></p>
 </div>
 
 </div>

@@ -8,33 +8,29 @@ end
 
 post '/analyze' do 
 
-  dc = Document.new(file: params[:file])
-  dc.save
-
   # get last ten documents uploaded and saved to database for history sidebar
   @lasttendoc = Document.all.order(:created_at).reverse_order.limit(10)
 
-  # Have to find the location from CarrierWave Object
-  file_location = dc.file.file.file
+  doc = Document.new(file: params[:file])
+  doc.save
 
-  doc = Docx::Document.open(file_location)
+  # Have to find the location from CarrierWave Object
+  file_location = doc.file.file.file
 
   # many of these methods are in the model
-  passages = Document.paragraphs(doc)
+  @text = Document.add_document(file_location)
 
-  full_text = Document.combine(passages)
+  downcase_split = Document.downcase_split(@text)
 
-  @full_text_read = full_text.join
+  # getting rid of apostrophes punctuations
+  @doc_parsed = Document.delete_punc(downcase_split)
 
-  @document_parsed = Document.downcase_split(full_text)
-  
-  no_punc = Word.delete_punctuation(@document_parsed)
 
   # deleting the s for appropriate words
-  no_s = Word.delete_s(no_punc)
+  no_s = Word.delete_s(@doc_parsed)
 
-  # getting rid of apostrophes and suffixes using regex
   no_suffix = Word.delete_suffix(no_s)
+
 
   doc_word_count = Document.count_words(no_suffix)
 

@@ -16,6 +16,8 @@ gem 'activerecord', '~>4.1'
 
 gem 'rake'
 
+gem 'rack', '1.5.2'
+
 gem 'shotgun'
 
 # Use to interact with .docx files
