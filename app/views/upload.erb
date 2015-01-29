@@ -1,0 +1,21 @@
+
+<div class="container">
+	<h2>Document Analysis</h2>
+<hr>
+	<p>Total Words in Document: <b><%= @doc_parsed.count %></b></p>
+
+<form action='/analysis' method='POST'>
+    <input type="submit" value="Analyze Document" />
+</form>
+
+
+	<h2>Full Text</h2>
+<div id="full_text">
+	<p><i><%= @text %></i></p>
+</div>
+
+
+
+</div>
+
+

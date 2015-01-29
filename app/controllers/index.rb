@@ -6,7 +6,7 @@ get '/' do
   erb :index
 end
 
-post '/analyze' do 
+post '/upload' do 
 
   # get last ten documents uploaded and saved to database for history sidebar
   @lasttendoc = Document.all.order(:created_at).reverse_order.limit(10)
@@ -22,24 +22,31 @@ post '/analyze' do
 
   doc.update_attributes(text: @text)
 
-
   # getting rid of apostrophes punctuations
   @doc_parsed = doc.document_parse
 
+  Word.create!(document_id: doc.id, word_array: @doc_parsed)
 
-  words = Word.new(document_id: doc.id, word_array: @doc_parsed)
-  words.save
+  erb :upload
+end
+
+post '/analysis' do 
+
+  @lasttendoc = Document.all.order(:created_at).reverse_order.limit(10)
+
+  @doc = Document.last
+
+  words = Word.find_by(document_id: @doc.id)
 
   # deleting the s and suffixes for appropriate words
   stemmed = words.word_stemmer
 
+  @doc.update_attributes(stemmed: stemmed)
 
-  doc_word_count = Document.count_words(stemmed)
+  top_25_sorted_word_count = @doc.word_count_sort
 
-  @top_25_sorted_word_count = Document.sorted_word_count(doc_word_count)
-
-  @top15 = @top_25_sorted_word_count[0..14] 
-  @top16to25 = @top_25_sorted_word_count[15..25]
+  @top15 = top_25_sorted_word_count[0..14] 
+  @top16to25 = top_25_sorted_word_count[15..25]
 
   erb :analysis
 

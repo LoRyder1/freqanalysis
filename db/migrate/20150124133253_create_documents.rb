@@ -4,6 +4,7 @@ class CreateDocuments < ActiveRecord::Migration
   		t.string :name
   		t.string :file
   		t.text :text
+  		t.json :stemmed
   		t.timestamps
   	end
   end

@@ -1,50 +1,40 @@
-
 <div class="container">
 	<h2>Document Analysis</h2>
-<hr>
-	<p>Total Words in Document: <b><%= @doc_parsed.count %></b></p>
 
 <hr>
 <p>Below you will find a table with the top 25 words in the document along with the number of occurences.</p>
 
-<div id="left">
-	<table>
-		<tr>
-			<th>Word</th>
-			<th>Count</th>
-		</tr>
+	<div id="left">
+		<table>
+			<tr>
+				<th>Word</th>
+				<th>Count</th>
+			</tr>
 
-	<% @top15.each do |word, count| %>
-		<tr>
-			<td><%= word %></td>
-			<td><%= count %></td>
-		</tr>
-	<% end %>
-	</table>
-</div>
+		<% @top15.each do |word, count| %>
+			<tr>
+				<td><%= word %></td>
+				<td><%= count %></td>
+			</tr>
+		<% end %>
+		</table>
+	</div>
 
-<div id="right">
-<br>
-<br>
-<br>
-	<table>
-	<% @top16to25.each do |word, count| %>
-		<tr>
-			<td><%= word %></td>
-			<td><%= count %></td>
-		</tr>
-	<% end %>
-	</table>
-</div>
+	<div id="right">
+	<br>
+	<br>
+	<br>
+		<table>
+		<% @top16to25.each do |word, count| %>
+			<tr>
+				<td><%= word %></td>
+				<td><%= count %></td>
+			</tr>
+		<% end %>
+		</table>
+	</div>
 
-<br>
-<br><br><br>
-
-	<h2>Full Text</h2>
-<div id="full_text">
-	<p><i><%= @text %></i></p>
-</div>
+<h2>Full Text</h2>
+	<p><%=@doc.text  %></p>
 
 </div>
-
-
