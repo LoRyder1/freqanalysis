@@ -20,19 +20,21 @@ post '/analyze' do
   # many of these methods are in the model
   @text = Document.add_document(file_location)
 
-  downcase_split = Document.downcase_split(@text)
+  doc.update_attributes(text: @text)
+
 
   # getting rid of apostrophes punctuations
-  @doc_parsed = Document.delete_punc(downcase_split)
+  @doc_parsed = doc.document_parse
 
 
-  # deleting the s for appropriate words
-  no_s = Word.delete_s(@doc_parsed)
+  words = Word.new(document_id: doc.id, word_array: @doc_parsed)
+  words.save
 
-  no_suffix = Word.delete_suffix(no_s)
+  # deleting the s and suffixes for appropriate words
+  stemmed = words.word_stemmer
 
 
-  doc_word_count = Document.count_words(no_suffix)
+  doc_word_count = Document.count_words(stemmed)
 
   @top_25_sorted_word_count = Document.sorted_word_count(doc_word_count)
 

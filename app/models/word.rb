@@ -3,15 +3,15 @@ class Word < ActiveRecord::Base
 
   @@suffix_regex = /ed\z|ing\z|ly\z|er\z|or\z|ion\z|ible\z|able\z|al\z|ial\z|ness\z|ity\z|ty\z|ment\z|ic\z|ous\z|eous\z|ious\z|en\z|ive\z|ative\z|itive\z|ful\z|less\z|est\z/
 
-  # def add_word_array(doc_parsed)
-  #   @word_array = doc_parsed
-  # end
 
-  # def self.word_stemmer(word_array)
-  #   delete_suffix(delete_s(word_array))
-  # end
+  def word_stemmer
+    delete_suffix(delete_s(word_array))
+  end
 
-  def self.delete_s(word_array)
+
+  private
+  
+  def delete_s(word_array)
     no_s = []
     word_array.each do |x|
       if x == "is" || x == "was" || x == "as" || x == "this" #|| x == "has" || x.chars.last(3).join == "ous"
@@ -25,7 +25,7 @@ class Word < ActiveRecord::Base
     no_s
   end
 
-  def self.delete_suffix(no_s)
+  def delete_suffix(no_s)
     no_suffix = []
     no_s.each do |word|
       if word == "fact" || word == "for" || word == "or" || word == "able" || word == "less"

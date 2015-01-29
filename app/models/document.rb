@@ -8,16 +8,12 @@ class Document < ActiveRecord::Base
     Docx::Document.open(file) do |d|
       text << d.text
     end
-    text
+    text[0]
   end
 
-
-  # def self.document_parse(text)
-  #   # raise @text
-  #   x = ["hello what"]
-  #   # delete_punc(downcase_split(text))
-  #   text.downcase_split
-  # end
+  def document_parse
+    delete_punc(downcase_split(self.text))
+  end
 
 
   def self.count_words(stemmed_word_array)
@@ -33,13 +29,13 @@ class Document < ActiveRecord::Base
     sorted.last(25).reverse
   end
 
-  # private
+  private
 
-  def self.downcase_split(text)
-    text.join(" ").downcase.split(" ")
+  def downcase_split(text)
+    text.downcase.split(" ")
   end
 
-  def self.delete_punc(split_text)
+  def delete_punc(split_text)
     no_punc = []
     split_text.each do |word|
       no_punc << word.gsub(/\W/, "")
